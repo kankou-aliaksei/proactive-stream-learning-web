@@ -1,0 +1,12 @@
+<section
+    *ngFor="let content of ((course && course.sections) ? course.sections : []); let i = index"
+    class="main">
+    <div [innerHTML]="content | sanitizeHtml"></div>
+    <footer *ngIf="(i === 0) || (i === course.sections.length - 1)" class="major">
+        <ul class="actions special">
+            <li><a [routerLink]="['/enroll-course', course.id]" class="button primary">Записаться</a></li>
+            <li><a routerLink="/contacts" class="button">Задать вопрос</a></li>
+        </ul>
+    </footer>
+</section>
+

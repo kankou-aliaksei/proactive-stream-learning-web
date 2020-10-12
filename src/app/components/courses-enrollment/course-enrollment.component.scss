@@ -1,0 +1,17 @@
+@import '../../../../node_modules/igniteui-angular/lib/core/styles/themes/index';
+
+$custom-toast: igx-toast-theme(
+        $background: #551457,
+        $text-color: white,
+        $border-radius: 12px
+);
+
+:host {
+  ::ng-deep {
+    @include igx-toast($custom-toast);
+  }
+}
+
+.btn {
+  margin: 5px;
+}

@@ -1,0 +1,87 @@
+<section class="main">
+    <div class="spotlight">
+        <div class="content">
+            <header class="major">
+                <h2>Запись на курс</h2>
+            </header>
+            <form #form="ngForm" class="input-group-form" (ngSubmit)="onSubmit(form)">
+                <div class="row gtr-uniform">
+                    <div class="col-12">
+                        <input
+                                required
+                                minlength="3"
+                                maxlength="200"
+                                ngModel
+                                name="name"
+                                id="name"
+                                type="text"
+                                placeholder="Имя*"
+                                #name="ngModel"/>
+                        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                            <div *ngIf="name.errors.required">Ввведите имя. Это обязательное поле</div>
+                            <div *ngIf="name.errors.minlength">Имя должно быть не
+                                менее {{ name.errors.minlength.requiredLength }} символов
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input
+                                required
+                                maxlength="20"
+                                pattern="^\+{0,1}\d+$"
+                                ngModel
+                                name="phone"
+                                id="phone"
+                                type="text"
+                                placeholder="Телефон в международном формате*"
+                                #phone="ngModel"/>
+                        <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+                            <div *ngIf="phone.errors.required">Ввведите телефон. Это обязательное поле</div>
+                            <div *ngIf="phone.errors.pattern">Введите телефон в верном формате</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input
+                                required
+                                pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                maxlength="200"
+                                ngModel
+                                name="email"
+                                id="email"
+                                type="text"
+                                placeholder="Email*"
+                                #email="ngModel"/>
+                        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                            <div *ngIf="email.errors.required">Ввведите email. Это обязательное поле</div>
+                            <div *ngIf="email.errors.pattern">Email должен иметь верный формат</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <textarea
+                                ngModel
+                                name="message"
+                                id="message"
+                                placeholder="Комментарий"
+                                rows="6">
+                        </textarea>
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li>
+                                <input
+                                        type="submit"
+                                        value="Записаться"
+                                        class="primary"
+                                        [disabled]="form.invalid"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12">
+                        * Введите все необходимые поля
+                    </div>
+                </div>
+            </form>
+            <igx-toast #toast message="Ваша заявка была отправлена" [position]="0"></igx-toast>
+        </div>
+    </div>
+</section>
